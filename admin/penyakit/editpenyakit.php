@@ -23,7 +23,7 @@ if ($kdubah != "") {
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="description">
   <meta content="" name="keywords">
-  <title>Edit data Penyakit</title>
+  <title>Edit data strategi</title>
   <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
@@ -33,23 +33,23 @@ if ($kdubah != "") {
 
   <div class="card col-md-6 mx-auto mt-5">
     <div class="card-body">
-      <h4 class="text-center">Edit Data Penyakit & Solusi</h4>
+      <h4 class="text-center">Edit Data Strategi & Solusi</h4>
       <form method="post" action="./editpenyakit2.php">
         <div class="form-group mb-2">
-          <label for="kdpenyakit">Kode Penyakit :</label>
+          <label for="kdpenyakit">Kode Strategi :</label>
           <input type="text" class="form-control" id="kdpenyakit" name="kdpenyakit" value="<?php echo $edit_kdpenyakit; ?>">
           <input name="kdpenyakit" type="hidden" id="kdpenyakit" value="<?php echo $id; ?>">
         </div>
         <div class="form-group mb-2">
-          <label for="nama_penyakit">Nama Penyakit :</label>
+          <label for="nama_penyakit">Nama Strategi :</label>
           <input type="text" class="form-control" id="edit_penyakit" name="edit_penyakit" value="<?php echo $edit_penyakit; ?>">
         </div>
         <div class="form-group mb-2">
-          <label for="definisi">Definisi Penyakit :</label>
+          <label for="definisi">Definisi Strategi :</label>
           <textarea class="form-control" rows="3" id="edit_definisi" name="edit_definisi"><?php echo $edit_definisi; ?></textarea>
         </div>
         <div class="form-group">
-          <label for="solusi">Solusi Penyakit :</label>
+          <label for="solusi">Solusi Strategi :</label>
           <textarea class="form-control" rows="3" id="edit_solusi" name="edit_solusi"><?php echo $edit_solusi; ?></textarea>
         </div>
         <div class="d-grid gap-2">

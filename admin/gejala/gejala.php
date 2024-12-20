@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin - Sistem Pakar Penyakit Penyakit Sapi</title>
+  <title>Admin </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -91,12 +91,12 @@
         <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="../penyakit/penyakit.php">
-              <span>Data Penyakit dan Solusi</span>
+              <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
             <a href="../gejala/gejala.php" class="active">
-              <span>Data Gejala</span>
+              <span>Data Strategi</span>
             </a>
           </li>
         </ul>

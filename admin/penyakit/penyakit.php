@@ -199,24 +199,24 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title mx-auto">Tambah Data Penyakit & Solusi</h5>
+          <h5 class="modal-title mx-auto">Tambah Data Strategi & Solusi</h5>
         </div>
         <div class="modal-body">
           <form method="post" action="./simpanpenyakit.php">
             <div class="form-group mb-2">
-              <label for="kdpenyakit">Kode Penyakit :</label>
+              <label for="kdpenyakit">Kode Strategi :</label>
               <input type="text" class="form-control" id="kdpenyakit" name="kdpenyakit">
             </div>
             <div class="form-group mb-2">
-              <label for="nama_penyakit">Nama Penyakit :</label>
+              <label for="nama_penyakit">Nama Strategi :</label>
               <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit">
             </div>
             <div class="form-group mb-2">
-              <label for="definisi">Definisi Penyakit :</label>
+              <label for="definisi">Definisi Strategi :</label>
               <textarea class="form-control" rows="3" id="definisi" name="definisi"></textarea>
             </div>
             <div class="form-group">
-              <label for="solusi">Solusi Penyakit :</label>
+              <label for="solusi">Solusi Strategi :</label>
               <textarea class="form-control" rows="3" id="solusi" name="solusi"></textarea>
             </div>
             <div class="d-grid gap-2">

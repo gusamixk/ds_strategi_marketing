@@ -50,7 +50,7 @@
               <thead>
                 <tr>
                   <th class="text-center">No</th>
-                  <th class="text-center">Deskripsi Penyakit</th>
+                  <th class="text-center">Deskripsi Strategi Digital Marketing</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,7 +66,7 @@
                     <td>
                       <h4><?php echo "<em>$data[nama_penyakit]</em>"; ?></h4>
                       <ul>
-                        <li><strong>Definisi Penyakit:</strong>
+                        <li><strong>Definisi Strategi:</strong>
                           <p class="text-info"><?php echo $data['definisi']; ?></p>
                         </li>
                         <li><strong>Saran:</strong>
