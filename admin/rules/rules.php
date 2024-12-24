@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin - Sistem Pakar Penyakit Penyakit Sapi</title>
+  <title>Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -132,12 +132,12 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="../penyakit/penyakit.php">
-              <span>Data Penyakit dan Solusi</span>
+              <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
             <a href="../gejala/gejala.php">
-              <span>Data Gejala</span>
+              <span>Data Strategi</span>
             </a>
           </li>
         </ul>
@@ -157,7 +157,7 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="../laporan/lapgejala.php">
-              <span>Laporan Gejala</span>
+              <span>Laporan Strategi</span>
             </a>
           </li>
         </ul>
@@ -191,7 +191,7 @@
 
             <div class="konten">
               <form id="form1" name="form1" method="post" action="./simpanrules.php" enctype="multipart/form-data" onsubmit="return validateForm()">
-                <h5 class="text-center">Tambah Rule Penyakit Penyakit Sapi</h5>
+                <h5 class="text-center">Tambah Rule Data Strategi Digital Marketing</h5>
                 <table class="tab" width="700" border="0" align="center" cellpadding="4" cellspacing="1" bordercolor="#F0F0F0" bgcolor="#fff">
                   <tr bgcolor="#FFFFFF">
                     <td><strong class="ms-2">Pilih Gejala</strong></td>

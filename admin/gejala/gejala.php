@@ -116,7 +116,7 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="../laporan/lapgejala.php">
-              <span>Laporan Gejala</span>
+              <span>Laporan Strategi</span>
             </a>
           </li>
         </ul>
@@ -133,12 +133,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Gejala</h1>
+      <h1>Data Strategi</h1>
       <nav style="--bs-breadcrumb-divider: '>';">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="../index.html">Admin</a></li>
           <li class="breadcrumb-item">Master Data</li>
-          <li class="breadcrumb-item active">Data Gejala</li>
+          <li class="breadcrumb-item active">Data Strategi</li>
         </ol>
       </nav>
       <hr>
@@ -158,8 +158,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kode Gejala</th>
-                  <th>Nama Gejala</th>
+                  <th>Kode Strategi</th>
+                  <th>Nama Strategi</th>
                   <th>Edit</th>
                   <th>Delete<input type="hidden" id="texthapus"></th>
                   <!-- <th>Delete<input type="hidden" id="texthapus"></th> -->
@@ -196,16 +196,16 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title mx-auto">Tambah Data Gejala</h5>
+          <h5 class="modal-title mx-auto">Tambah Data Strategi</h5>
         </div>
         <div class="modal-body">
           <form method="post" action="./simpangejala.php">
             <div class="form-group mb-2">
-              <label for="kdgejala">Kode Gelaja :</label>
+              <label for="kdgejala">Kode Strategi :</label>
               <input type="text" class="form-control" id="kdgejala" name="kdgejala">
             </div>
             <div class="form-group mb-2">
-              <label for="gejala">Nama Gejala :</label>
+              <label for="gejala">Nama Strategi :</label>
               <input type="text" class="form-control" id="gejala" name="gejala">
             </div>
             <div class="d-grid gap-2">

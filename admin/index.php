@@ -15,7 +15,7 @@ if ($_SESSION['status'] != "login") {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin - Sistem Pakar Penyakit Penyakit Sapi</title>
+  <title>Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -76,12 +76,12 @@ if ($_SESSION['status'] != "login") {
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="./penyakit/penyakit.php">
-              <span>Data Penyakit dan Solusi</span>
+              <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
             <a href="./gejala/gejala.php">
-              <span>Data Gejala</span>
+              <span>Data Strategi</span>
             </a>
           </li>
         </ul>
@@ -101,7 +101,7 @@ if ($_SESSION['status'] != "login") {
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="./laporan/lapgejala.php">
-              <span>Laporan Gejala</span>
+              <span>Laporan Strategi</span>
             </a>
           </li>
         </ul>
@@ -131,10 +131,7 @@ if ($_SESSION['status'] != "login") {
     <section>
       <h1>Selamat Datang Admin</h1>
       <br>
-      <p>Sistem Pakar penyakit Penyakit Sapi ini adalah sebuah sistem yang digunakan untuk mendiagnosa awal jenis
-        penyakit yang menyerang berdasarkan gejala yang dialami. Proses diagnosa dengan menentukan
-        gejala-gejala yang terjadi, dengan menggunakan metode Dempster Shafer maka sistem dapat memberikan
-        keputusan tentang hasil diagnosa awal.</p>
+      <p>Sistem Pakar Pemilihan Strategi Digital Marketing</p>
     </section>
   </main><!-- End #main -->
 

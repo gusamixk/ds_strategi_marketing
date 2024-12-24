@@ -68,7 +68,7 @@
   <section>
     <div class="row mt-5 mx-auto">
       <div class="col-md-8 mt-2 mx-auto">
-        <h3 class="text-center mb-4">Edit Nilai Belief Penyakit Penyakit Sapi</h3>
+        <h3 class="text-center mb-4">Edit Nilai Belief Strategi Digital Marketing</h3>
         <?php
         include "../koneksi.php";
         $kd_gejala = $_GET['id_gejala'];
@@ -82,8 +82,8 @@
             <table class="table table-striped table-bordered mt-2">
               <thead>
                 <tr>
-                  <th width='116px' class="text-center">Kode Gejala</th>
-                  <th class="text-center">Nama Gejala</th>
+                  <th width='116px' class="text-center">Kode Strategi</th>
+                  <th class="text-center">Nama Strategi</th>
                   <th width='10px' class="text-center">Belief</th>
                   <th width='250px' class="text-center">Update</th>
                 </tr>

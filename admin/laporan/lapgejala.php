@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin - Sistem Pakar Penyakit Penyakit Sapi</title>
+  <title>Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -83,12 +83,12 @@
         <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a href="../penyakit/penyakit.php">
-              <span>Data Penyakit dan Solusi</span>
+              <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
             <a href="../gejala/gejala.php">
-              <span>Data Gejala</span>
+              <span>Data Strategi</span>
             </a>
           </li>
         </ul>
@@ -108,7 +108,7 @@
         <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="../laporan/lapgejala.php" class="active">
-              <span>Laporan Gejala</span>
+              <span>Laporan Strategi</span>
             </a>
           </li>
         </ul>
@@ -125,12 +125,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Laporan Gejala</h1>
+      <h1>Laporan Strategi</h1>
       <nav style="--bs-breadcrumb-divider: '>';">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="../index.php">Admin</a></li>
           <li class="breadcrumb-item">Laporan</li>
-          <li class="breadcrumb-item active">Laporan Gejala</li>
+          <li class="breadcrumb-item active">Laporan Strategi</li>
         </ol>
       </nav>
       <hr>
@@ -140,7 +140,7 @@
 
       <div class="dropdown bx-pull-right">
         <button class="tambah dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Pilih Penyakit
+          Pilih Strategi
         </button>
 
         <ul class="dropdown-menu" role="menu">
@@ -159,8 +159,8 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Kode Gejala</th>
-              <th>Nama Gejala</th>
+              <th>Kode Strategi</th>
+              <th>Nama Strategi</th>
             </tr>
           </thead>
           <tbody>
