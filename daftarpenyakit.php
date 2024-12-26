@@ -23,16 +23,7 @@
 
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.css" rel="stylesheet">
-
-  <style>
-    .card {
-      border-radius: 10px;
-    }
-
-    .warning {
-      color: #daa812;
-    }
-  </style>
+  <link href="./assets/css/konsultasi.css" rel="stylesheet">
 </head>
 
 <body>

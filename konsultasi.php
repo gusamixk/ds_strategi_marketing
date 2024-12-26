@@ -29,17 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.css" rel="stylesheet">
-
-  <style>
-    .gejala {
-      color: blue;
-      /* border: 1px solid red; */
-      padding: 5px;
-      display: flex;
-      justify-content: center;
-    }
-  </style>
-
+<link rel="stylesheet" href="./assets/css/konsultasi.css">
 </head>
 
 <body>
@@ -58,10 +48,12 @@
       <div class="card-body">
         <div class="bg-info rounded-1">
           <h3 class="mt-4 ms-2 p-1">Petunjuk Pengisian</h3>
-          <p class="ms-3 me-2 pb-2">Proses konsultasi terdiri dari 18 pertanyaan. Selanjutnya, anda diminta untuk menjawab dengan cara klik opsi gejalanya apabila gejala tersebut sesuai dengan kondisi yang terjadi. Bacalah dan jawab setiap gejala dengan teliti dan seksama.</p>
+          <p class="ms-3 me-2 pb-2">Proses konsultasi terdiri dari 40 strategi yang dapat diambil.
+             Selanjutnya, anda diminta untuk melilih dengan cara klik opsi Strategi apabila strategi
+              tersebut ingin anda ambil. Pastikan memilih strategi yang benar-benar sesuai dengan bisnis anda</p>
         </div>
 
-        <h5 class="text-secondary text-center mt-4">Pilih Gejala</h5>
+        <h5 class="text-secondary text-center mt-4">Pilih Strategi</h5>
         <?php
         $koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
 
@@ -95,7 +87,7 @@
           }
           ?>
           <div class="mt-4">
-            <!-- <button class="btn btn-outline-success btn-md"  -->
+            <button class="btn btn-outline-success btn-md" 
               onclick="return validateForm();" 
               style="width: 130px; height: 40px; cursor: pointer; box-shadow: 0 0 10px rgb(255, 250, 240);">
               <i class="bi bi-check-lg"></i> Prosess</button>
