@@ -10,7 +10,8 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Hasil diagnosa penyakit</title>
+  <title>Saran Strategi
+  </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -33,33 +34,14 @@ session_start();
 
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.css" rel="stylesheet">
-
-  <style>
-    .gejala {
-      color: red;
-      padding: 5px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .form {
-      margin-top: 70px;
-    }
-
-    .diagnosa {
-      margin: 10px;
-      max-height: 300px;
-      overflow: auto;
-      border: 3px solid #a3f0ff;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-  </style>
+  <link href="./assets/css/konsultasi.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-    <h1 class="text-center mt-5">Hasil Diagnosa Penyakit </h1>
+  <div class="container bg-info bg-gradient rounded-2" style="--bs-bg-opacity: .3;">
+    <h1 
+    class="text-center mt-5 border border-2 border-dark border-start-0 border-end-0 border-top-0"
+    >Hasil</h1>
     <?php
     $koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
 
@@ -71,7 +53,7 @@ session_start();
     <?php
     //Mengambil Nilai Belief Gejala Yang dipilih
     if (isset($_POST['bukti'])) { {
-        echo "<div class='form'><p><b>Gejala Yang dipilih :</b></p>";
+        echo "<div class='form'><p><b class='text-primary'>Strategi Yang dipilih :</b></p>";
         $gejaladipilih = $_POST['bukti'];
         foreach ($gejaladipilih as $gjlplh) {
           echo $gjlplh . " | ";
@@ -82,10 +64,10 @@ session_start();
         }
         echo "</div>";
         $sql = "SELECT GROUP_CONCAT(b.kdpenyakit), a.belief
-			FROM tb_rules a
-			JOIN tb_penyakit b ON a.id_penyakit=b.id
-			WHERE a.id_gejala IN(" . implode(',', $_POST['bukti']) . ") 
-			GROUP BY a.id_gejala";
+                FROM tb_rules a
+                JOIN tb_penyakit b ON a.id_penyakit=b.id
+                WHERE a.id_gejala IN(" . implode(',', $_POST['bukti']) . ") 
+                GROUP BY a.id_gejala";
         $result = $koneksi->query($sql);
         $bukti = array();
         while ($row = $result->fetch_row()) {
@@ -165,13 +147,20 @@ session_start();
         $datasolusi = array_intersect_key($arrPenyakit, $densitas_baru);
         foreach ($datasolusi as $k => $a) {
           foreach ($densitas_baru as $kdpenyakit => $ranking) {
-            if ($k == $kdpenyakit) {
-              //mengambil solusi penyakit
-              $strS = mysqli_query($koneksi, "SELECT * FROM tb_penyakit WHERE kdpenyakit='$k' ");
-              $dataS = mysqli_fetch_array($strS);
-            }
+              if ($k == $kdpenyakit) {
+                  // Mengambil solusi penyakit
+                  $strS = mysqli_query($koneksi, "SELECT * FROM tb_penyakit WHERE kdpenyakit='$k'");
+      
+                  if ($dataS = mysqli_fetch_array($strS)) {
+                      // Menampilkan solusi jika data ditemukan
+                  } else {
+                      // Pesan error jika data tidak ditemukan
+                      echo "<p style='margin: 10px; color: red;'>Solusi tidak ditemukan untuk kode penyakit: $k</p>";
+                  }
+              }
           }
-        }
+      }
+      
         //menampilkan hasil
         echo "<br>";
         echo "<p style = 'text-align:center;'>";
@@ -184,21 +173,23 @@ session_start();
         $row = $result->fetch_row();
 
         // Tampilkan proses perhitungan densitas
-echo "<div class='perhitungan-densitas'>";
-echo "<h3>Perhitungan Densitas</h3>";
-foreach ($densitas_baru as $k => $nilai) {
-  echo "<p>Densitas untuk <strong>$k</strong>: $nilai</p>";
+          echo "<div class='perhitungan-densitas'>";
+          echo "<h3>Perhitungan Densitas :</h3>";
+          foreach ($densitas_baru as $k => $nilai) {
+            global $dataS;
+            echo "<p>Densitas untuk <strong> <u>$k</u> = $nilai</strong></p>
+            ";
 }   
         echo "<br>";
         echo "<br>";
-        echo "<b>Kesimpulan Hasil Diagnosa :</b>";
+        echo "<b class='text-primary'>Saran yang Diberikan :</b>";
         echo "<br>";
         // echo "<br>";
-        echo " <p class=\"diagnosa\">Terdeteksi penyakit <b>{$row[0]}</b> dengan derajat kepercayaan sebesar <b>" . round($densitas_baru[$codes[0]] * 100, 2) . "%</b></p>";
+        echo " <p class=\"diagnosa\">Saran yang diberikan <b>{$row[0]}</b> dengan derajat kepercayaan sebesar <b>" . round($densitas_baru[$codes[0]] * 100, 2) . "%</b></p>";
         echo "<br>";
         // echo "<br>";
-        echo "<b><p style = 'text-align:center;'> Saran :</b></p> ";
-        echo "<p style='margin: 10px;max-height:300px;overflow:auto; border:3px solid #a3f0ff ; letter-spacing:2px;'>" . $dataS['solusi'] . "</p>";
+        echo "<b><p style = 'text-align:center;'> Rincian Strategi :</b></p> ";
+        echo "<p style='margin: 10px;max-height:300px;overflow:auto; border:3px solid rgb(234, 106, 106) ; letter-spacing:2px;'>" . $dataS['solusi'] . "</p>";
       }
     }
     ?>

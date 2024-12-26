@@ -1,0 +1,29 @@
+/* todo untuk style CSS halaman konsultasi */
+/* halaman daftar penyakit */
+.card {
+    border-radius: 10px;
+  }
+
+  .warning {
+    color: #daa812;
+  }
+/* halaman hasil konsultasi */
+  .gejala {
+    color: red;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form {
+    margin-top: 70px;
+  }
+
+  .diagnosa {
+    margin: 10px;
+    max-height: 300px;
+    overflow: auto;
+    border: 2px solid rgb(234, 106, 106);
+    letter-spacing: 2px;
+    text-align: center;
+  }

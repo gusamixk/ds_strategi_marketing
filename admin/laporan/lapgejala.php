@@ -165,22 +165,33 @@
           </thead>
           <tbody>
             <?php
-            if (isset($_GET['data'])) {
-              $kdsakit = $_GET['data'];
-              $sql = "SELECT * FROM tb_rules,tb_gejala WHERE tb_rules.id_penyakit='$kdsakit' AND tb_gejala.id=tb_rules.id_gejala ";
-            } else {
-              $sql = "SELECT * FROM tb_rules,tb_gejala WHERE tb_gejala.id=tb_rules.id_gejala ";
-            }
-            $qry = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
-            $no = 0;
-            while ($data = mysqli_fetch_array($qry)) {
-              $no++;
-            ?>
-              <tr>
-                <td><?php echo $no; ?></td>
-                <td><?php echo $data['kdgejala']; ?></td>
-                <td><?php echo $data['gejala']; ?></td>
-              </tr><?php } ?>
+              if (isset($_GET['data'])) {
+                $kdsakit = $_GET['data'];
+                $sql = "SELECT DISTINCT tb_gejala.id, tb_gejala.kdgejala, tb_gejala.gejala
+                FROM tb_rules INNER JOIN tb_gejala ON tb_gejala.id = tb_rules.id_gejala
+                WHERE tb_rules.id_penyakit='$kdsakit' ORDER BY tb.gejala.id ASC";
+              } else {
+                $sql = "SELECT DISTINCT tb_gejala.id, tb_gejala.kdgejala, tb_gejala.gejala 
+                        FROM tb_rules 
+                        INNER JOIN tb_gejala ON tb_gejala.id = tb_rules.id_gejala 
+                        ORDER BY tb_gejala.id ASC";
+              }
+              $qry = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
+              $datalist=[];
+              while ($data = mysqli_fetch_array($qry)) {
+                $datalist[] = $data;
+              }
+              // gunakan data dari aray untuk menghasilkan output
+                foreach ($datalist as $data){
+                  ?>
+                <tr>
+                  <td><?php echo $data['id']; ?></td>
+                  <td><?php echo $data['kdgejala']; ?></td>
+                  <td><?php echo $data['gejala']; ?></td>
+                </tr>
+                <?php 
+              }
+             ?>
           </tbody>
         </table>
       </div>
