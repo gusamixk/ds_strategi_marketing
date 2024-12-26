@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Data Strategi</title>
+  <title>Daftar Penyakit</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -23,7 +23,16 @@
 
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/konsultasi.css">
+
+  <style>
+    .card {
+      border-radius: 10px;
+    }
+
+    .warning {
+      color: #daa812;
+    }
+  </style>
 </head>
 
 <body>

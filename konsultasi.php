@@ -54,16 +54,14 @@
       <div class="mt-4">
         <a href="./index.php" type="button" class="btn btn-outline-danger btn-sm ms-3"><i class="bi bi-box-arrow-left"></i> Kembali</a>
       </div>
-      <!-- <h4 class="text-dark d-flex justify-content-center mt-4">Proses Pemilihan Strategi  </h4> -->
+
       <div class="card-body">
         <div class="bg-info rounded-1">
           <h3 class="mt-4 ms-2 p-1">Petunjuk Pengisian</h3>
-          <!-- <p class="ms-3 me-2 pb-2">Proses konsultasi terdiri dari 40 strategi yang dapat diambil. -->
-             Selanjutnya, anda diminta untuk melilih dengan cara klik opsi Strategi apabila strategi
-              tersebut ingin anda ambil. Pastikan memilih strategi yang benar-benar sesuai dengan bisnis anda.</p>
+          <p class="ms-3 me-2 pb-2">Proses konsultasi terdiri dari 18 pertanyaan. Selanjutnya, anda diminta untuk menjawab dengan cara klik opsi gejalanya apabila gejala tersebut sesuai dengan kondisi yang terjadi. Bacalah dan jawab setiap gejala dengan teliti dan seksama.</p>
         </div>
 
-        <!-- <h5 class="text-secondary text-center mt-4">Pilih Strategi</h5> -->
+        <h5 class="text-secondary text-center mt-4">Pilih Gejala</h5>
         <?php
         $koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
 
@@ -113,7 +111,7 @@
               }
             }
             if (checkboxesChecked < 2) {
-              alert("Maaf, Anda harus memilih minimal 2 gejala");
+              alert("Maaf, Anda harus memilih minimal 2 Kriteria sesuai dengan kondisi Anda");
               return false;
             }
           }

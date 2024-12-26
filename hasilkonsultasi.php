@@ -10,8 +10,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Saran Strategi
-  </title>
+  <title>Hasil diagnosa penyakit</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,10 +37,8 @@ session_start();
 </head>
 
 <body>
-  <div class="container bg-info bg-gradient rounded-2" style="--bs-bg-opacity: .3;">
-    <h1 
-    class="text-center mt-5 border border-2 border-dark border-start-0 border-end-0 border-top-0"
-    >Hasil</h1>
+  <div class="container">
+    <h1 class="text-center mt-5">Hasil Diagnosa Penyakit </h1>
     <?php
     $koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
 
@@ -53,16 +50,17 @@ session_start();
     <?php
     //Mengambil Nilai Belief Gejala Yang dipilih
     if (isset($_POST['bukti'])) { {
-        echo "<div class='form'><p><b class='text-primary'>Strategi Yang dipilih :</b></p>";
+        echo "<div class='form'><p><b>Gejala Yang dipilih :</b></p>";
         $gejaladipilih = $_POST['bukti'];
         foreach ($gejaladipilih as $gjlplh) {
-          echo $gjlplh . " | ";
-          $qry = mysqli_query($koneksi, "SELECT * FROM tb_gejala WHERE id='$gjlplh' ");
-          while ($data = mysqli_fetch_array($qry)) {
-            echo $data['gejala'] . "<br>";
-          }
+            echo $gjlplh . " | ";
+            $qry = mysqli_query($koneksi, "SELECT DISTINCT * FROM tb_gejala WHERE id='$gjlplh'");
+            while ($data = mysqli_fetch_array($qry)) {
+                echo $data['gejala'] . "<br>";
+            }
         }
         echo "</div>";
+
         $sql = "SELECT GROUP_CONCAT(b.kdpenyakit), a.belief
                 FROM tb_rules a
                 JOIN tb_penyakit b ON a.id_penyakit=b.id
@@ -71,7 +69,7 @@ session_start();
         $result = $koneksi->query($sql);
         $bukti = array();
         while ($row = $result->fetch_row()) {
-          $bukti[] = $row;
+            $bukti[] = $row;
         }
 
         $sql = "SELECT GROUP_CONCAT(kdpenyakit) FROM tb_penyakit";
@@ -79,60 +77,55 @@ session_start();
         $row = $result->fetch_row();
         $fod = $row[0];
 
-        //menentukan nilai densitas
-        // echo "<br>";
-        // echo "<b>Nilai Densitas </b>\n";
+        // menentukan nilai densitas
         $densitas_baru = array();
         while (!empty($bukti)) {
-          $densitas1[0] = array_shift($bukti);
-          $densitas1[1] = array($fod, 1 - $densitas1[0][1]);
-          $densitas2 = array();
-          if (empty($densitas_baru)) {
-            $densitas2[0] = array_shift($bukti);
-          } else {
-            foreach ($densitas_baru as $k => $r) {
-              if ($k != "&theta;") {
-                $densitas2[] = array($k, $r);
-              }
-            }
-          }
-          $theta = 1;
-          foreach ($densitas2 as $d) $theta -= $d[1];
-          $densitas2[] = array($fod, $theta);
-          $m = count($densitas2);
-          $densitas_baru = array();
-          for ($y = 0; $y < $m; $y++) {
-            for ($x = 0; $x < 2; $x++) {
-              if (!($y == $m - 1 && $x == 1)) {
-                $v = explode(',', $densitas1[$x][0]);
-                $w = explode(',', $densitas2[$y][0]);
-                sort($v);
-                sort($w);
-                $vw = array_intersect($v, $w);
-                if (empty($vw)) {
-                  $k = "&theta;";
-                } else {
-                  $k = implode(',', $vw);
+            $densitas1[0] = array_shift($bukti);
+            $densitas1[1] = array($fod, 1 - $densitas1[0][1]);
+            $densitas2 = array();
+            if (empty($densitas_baru)) {
+                $densitas2[0] = array_shift($bukti);
+            } else {
+                foreach ($densitas_baru as $k => $r) {
+                    if ($k != "&theta;") {
+                        $densitas2[] = array($k, $r);
+                    }
                 }
-                if (!isset($densitas_baru[$k])) {
-                  $densitas_baru[$k] = $densitas1[$x][1] * $densitas2[$y][1];
-                } else {
-                  $densitas_baru[$k] += $densitas1[$x][1] * $densitas2[$y][1];
+            }
+            $theta = 1;
+            foreach ($densitas2 as $d) $theta -= $d[1];
+            $densitas2[] = array($fod, $theta);
+            $m = count($densitas2);
+            $densitas_baru = array();
+            for ($y = 0; $y < $m; $y++) {
+                for ($x = 0; $x < 2; $x++) {
+                    if (!($y == $m - 1 && $x == 1)) {
+                        $v = explode(',', $densitas1[$x][0]);
+                        $w = explode(',', $densitas2[$y][0]);
+                        sort($v);
+                        sort($w);
+                        $vw = array_intersect($v, $w);
+                        if (empty($vw)) {
+                            $k = "&theta;";
+                        } else {
+                            $k = implode(',', $vw);
+                        }
+                        if (!isset($densitas_baru[$k])) {
+                            $densitas_baru[$k] = $densitas1[$x][1] * $densitas2[$y][1];
+                        } else {
+                            $densitas_baru[$k] += $densitas1[$x][1] * $densitas2[$y][1];
+                        }
+                    }
                 }
-              }
             }
-          }
-          foreach ($densitas_baru as $k => $d) {
-            if ($k != "&theta;") {
-              $densitas_baru[$k] = $d / (1 - (isset($densitas_baru["&theta;"]) ? $densitas_baru["&theta;"] : 0));
+            foreach ($densitas_baru as $k => $d) {
+                if ($k != "&theta;") {
+                    $densitas_baru[$k] = $d / (1 - (isset($densitas_baru["&theta;"]) ? $densitas_baru["&theta;"] : 0));
+                }
             }
-          }
-          // print_r($densitas_baru);
         }
-        //menentukan urutan penyakit
-        // menghancurkan variabel yang ditentukan
+
         unset($densitas_baru["&theta;"]);
-        // mengurutkan array berdasarkan nilai
         arsort($densitas_baru);
         // print_r($densitas_baru);
     ?>
@@ -147,20 +140,13 @@ session_start();
         $datasolusi = array_intersect_key($arrPenyakit, $densitas_baru);
         foreach ($datasolusi as $k => $a) {
           foreach ($densitas_baru as $kdpenyakit => $ranking) {
-              if ($k == $kdpenyakit) {
-                  // Mengambil solusi penyakit
-                  $strS = mysqli_query($koneksi, "SELECT * FROM tb_penyakit WHERE kdpenyakit='$k'");
-      
-                  if ($dataS = mysqli_fetch_array($strS)) {
-                      // Menampilkan solusi jika data ditemukan
-                  } else {
-                      // Pesan error jika data tidak ditemukan
-                      echo "<p style='margin: 10px; color: red;'>Solusi tidak ditemukan untuk kode penyakit: $k</p>";
-                  }
-              }
+            if ($k == $kdpenyakit) {
+              //mengambil solusi penyakit
+              $strS = mysqli_query($koneksi, "SELECT * FROM tb_penyakit WHERE kdpenyakit='$k' ");
+              $dataS = mysqli_fetch_array($strS);
+            }
           }
-      }
-      
+        }
         //menampilkan hasil
         echo "<br>";
         echo "<p style = 'text-align:center;'>";
@@ -173,32 +159,29 @@ session_start();
         $row = $result->fetch_row();
 
         // Tampilkan proses perhitungan densitas
-          echo "<div class='perhitungan-densitas'>";
-          echo "<h3>Perhitungan Densitas :</h3>";
-          foreach ($densitas_baru as $k => $nilai) {
-            global $dataS;
-            echo "<p>Densitas untuk <strong> <u>$k</u> = $nilai</strong></p>
-            ";
+echo "<div class='perhitungan-densitas'>";
+echo "<h3>Perhitungan Densitas</h3>";
+foreach ($densitas_baru as $k => $nilai) {
+  echo "<p>Densitas untuk <strong>$k</strong>: $nilai</p>";
 }   
         echo "<br>";
         echo "<br>";
-        echo "<b class='text-primary'>Saran yang Diberikan :</b>";
+        echo "<b>Kesimpulan Hasil Diagnosa :</b>";
         echo "<br>";
         // echo "<br>";
-        echo " <p class=\"diagnosa\">Saran yang diberikan <b>{$row[0]}</b> dengan derajat kepercayaan sebesar <b>" . round($densitas_baru[$codes[0]] * 100, 2) . "%</b></p>";
+        echo " <p class=\"diagnosa\">Terdeteksi penyakit <b>{$row[0]}</b> dengan derajat kepercayaan sebesar <b>" . round($densitas_baru[$codes[0]] * 100, 2) . "%</b></p>";
         echo "<br>";
         // echo "<br>";
-        echo "<b><p style = 'text-align:center;'> Rincian Strategi :</b></p> ";
-        echo "<p style='margin: 10px;max-height:300px;overflow:auto; border:3px solid rgb(234, 106, 106) ; letter-spacing:2px;'>" . $dataS['solusi'] . "</p>";
+        echo "<b><p style = 'text-align:center;'> Saran :</b></p> ";
+        echo "<p style='margin: 10px;max-height:300px;overflow:auto; border:3px solid #a3f0ff ; letter-spacing:2px;'>" . $dataS['solusi'] . "</p>";
       }
     }
     ?>
 
-    <div class=" d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
       <a href="./konsultasi.php" class="btn btn-outline-danger mt-2">Klik disini untuk kembali</a>
     </div>
   </div>
-
 </body>
 
 </html>
