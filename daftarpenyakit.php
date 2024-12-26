@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Daftar Penyakit</title>
+  <title>Daftar Strategi</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,9 +28,11 @@
     .card {
       border-radius: 10px;
     }
-
     .warning {
-      color: #daa812;
+      color:rgb(27, 25, 18);
+    }
+    .text-info{
+      color:rgb(27, 25, 18);
     }
   </style>
 </head>
