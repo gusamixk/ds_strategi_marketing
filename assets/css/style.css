@@ -1251,6 +1251,48 @@ h6 {
   }
 }
 
+.feature {
+  padding: 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+}
+
+.icon {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 70px; /* Fixed size for icon container */
+  height: 70px; /* Fixed size for icon container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon i {
+  font-size: 32px; /* Adjust icon size to fit properly */
+}
+
+.feature h3 {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.feature p {
+  font-size: 16px;
+  color: #777;
+}
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -1272,3 +1314,4 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
