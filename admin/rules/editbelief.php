@@ -71,13 +71,13 @@
         <h3 class="text-center mb-4">Edit Nilai Belief Strategi Digital Marketing</h3>
         <?php
         include "../koneksi.php";
-        $kd_gejala = $_GET['id_gejala'];
-        $kdpenyakit = $_GET['id_penyakit'];
-        $queryP = mysqli_query($koneksi, "SELECT * FROM tb_penyakit WHERE id='$kdpenyakit' ");
+        $kd_kriteria = $_GET['id_kriteria'];
+        $kdstrategi = $_GET['id_strategi'];
+        $queryP = mysqli_query($koneksi, "SELECT * FROM tb_strategi WHERE id='$kdstrategi' ");
         $dataP = mysqli_fetch_array($queryP);
-        echo "<b>Nama Penyakit = " . $dataP['kdpenyakit'] . " | " . $dataP['nama_penyakit'];
+        echo "<b>Nama Strategi = " . $dataP['kdstrategi'] . " | " . $dataP['nama_strategi'];
         ?></b>
-        <form id="form1" name="form1" method="post" action="./updatebelief.php?id_penyakit=<?php echo $_GET['id_penyakit']; ?>&id_gejala=<?php echo $_GET['id_gejala']; ?>" enctype="multipart/form-data">
+        <form id="form1" name="form1" method="post" action="./updatebelief.php?id_strategi=<?php echo $_GET['id_strategi']; ?>&id_kriteria=<?php echo $_GET['id_kriteria']; ?>" enctype="multipart/form-data">
           <div class="table-responsive">
             <table class="table table-striped table-bordered mt-2">
               <thead>
@@ -91,12 +91,12 @@
               <tbody>
                 <?php
                 include "../koneksi.php";
-                $query = mysqli_query($koneksi, " SELECT * FROM tb_gejala WHERE id='$_GET[id_gejala]' ") or die(mysqli_error($koneksi));
+                $query = mysqli_query($koneksi, " SELECT * FROM tb_kriteria WHERE id='$_GET[id_kriteria]' ") or die(mysqli_error($koneksi));
                 while ($row = mysqli_fetch_array($query)) {
                 ?>
                   <tr>
-                    <td class="text-center"><?php echo $row['kdgejala']; ?></td>
-                    <td><?php echo $row['gejala']; ?>
+                    <td class="text-center"><?php echo $row['kdkriteria']; ?></td>
+                    <td><?php echo $row['kriteria']; ?>
                     <td class="text-center"><input name="updatebelief" type="text" size="2" value="<?php echo $_GET['belief']; ?>"></td>
                     <td class="text-center"><input class="submit" type="submit" value="Update Nilai">
                       <a href="./rules.php" class="ms-2 batal">Batal</a>

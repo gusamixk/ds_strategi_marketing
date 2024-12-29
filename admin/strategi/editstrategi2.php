@@ -15,23 +15,23 @@
   <?php
   include "../koneksi.php";
 
-  $kdpenyakit = $_POST['kdpenyakit'];
-  $penyakit = $_POST['edit_penyakit'];
+  $kdstrategi = $_POST['kdstrategi'];
+  $strategi = $_POST['edit_strategi'];
   $definisi = $_POST['edit_definisi'];
   $solusi = $_POST['edit_solusi'];
-  $sql = "UPDATE tb_penyakit SET nama_penyakit='$penyakit',definisi='$definisi', solusi='$solusi' WHERE id='$kdpenyakit'";
+  $sql = "UPDATE tb_strategi SET nama_strategi='$strategi',definisi='$definisi', solusi='$solusi' WHERE id='$kdstrategi'";
   $result = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
 
   if ($result) {
     echo "<table style='margin-top:150px;' align='center'><tr><td>";
     echo "<div style='width:500px; height:50px auto; border:1px solid #CCC; font-family:Poppins; padding:3px 3px 3px 3px;'>";
     echo "<center>terima kasih, data berhasil diubah</center><br>";
-    echo "<center><a href='./penyakit.php' class='btn btn-primary btn-sm'>OK</a></center>";
+    echo "<center><a href='./strategi.php' class='btn btn-primary btn-sm'>OK</a></center>";
     echo "</div>";
     echo "</td></tr></table>";
   } else {
     echo "<center><font color='#ff0000'><strong>Maaf gagal mengupdate data</strong></font></center><br>";
-    echo "<center><a href='./penyakit.php' class='btn btn-danger btn-sm'>Kembali</a></center>";
+    echo "<center><a href='./strategi.php' class='btn btn-danger btn-sm'>Kembali</a></center>";
   }
   ?>
 </body>

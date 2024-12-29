@@ -79,7 +79,7 @@
       <div class="mt-5">
         <table width="700" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#ffffff">
           <tr>
-            <td style="background:linear-gradient(to top, #0CC, #09C);"><strong>Kode Rule : <?php echo $_GET['kdpenyakit']; ?></strong></td>
+            <td style="background:linear-gradient(to top, #0CC, #09C);"><strong>Kode Rule : <?php echo $_GET['kdstrategi']; ?></strong></td>
             <td class=" ps-5" style="background:linear-gradient(to top, #0CC, #09C);"><strong class="ps-2">&nbsp;Edit Data Rule</strong></td>
           </tr>
           <tr class="mt-4">
@@ -87,35 +87,35 @@
               <ul style="list-style:none;" class="mt-3">
                 <?php
                 include "../koneksi.php";
-                $query = mysqli_query($koneksi, "SELECT * FROM tb_gejala ORDER BY id ASC") or die("Query Error..!" . mysqli_error($koneksi));
+                $query = mysqli_query($koneksi, "SELECT * FROM tb_kriteria ORDER BY id ASC") or die("Query Error..!" . mysqli_error($koneksi));
                 while ($row = mysqli_fetch_array($query)) {
                   //mencari data gejala yang di edit
-                  $kd_penyakit = $_GET['kdpenyakit'];
-                  $kd_gejala = $row['id'];
-                  $kueri = mysqli_query($koneksi, "SELECT * FROM tb_rules WHERE id_penyakit='$kd_penyakit' AND id_gejala='$kd_gejala' ORDER BY id_gejala desc ");
+                  $kd_strategi = $_GET['kdstrategi'];
+                  $kd_kriteria = $row['id'];
+                  $kueri = mysqli_query($koneksi, "SELECT * FROM tb_rules WHERE id_strategi='$kd_strategi' AND id_kriteria='$kd_kriteria' ORDER BY id_kriteria desc ");
                   $edit = mysqli_fetch_array($kueri);
                   if ($edit) {
-                    $checked = explode(', ', $edit['id_gejala']);
+                    $checked = explode(', ', $edit['id_kriteria']);
                   } else {
                     $checked = [];
                   }
                   //end data gejala
                   echo '<li>';
-                  echo '<input class="cekbok" type="checkbox" name="gejala[]" id="gejala' . $row['id'] . '" value="' . $row['id'] . '" ' . (in_array($row['id'], $checked) ? 'checked' : '') . '>';
-                  echo '<label style="cursor: pointer;" for="gejala' . $row['id'] . '">' . $row['kdgejala'] . '<strong>&nbsp; |&nbsp;&nbsp;</strong>' . $row['gejala'] . '</label>';
+                  echo '<input class="cekbok" type="checkbox" name="kriteria[]" id="kriteria' . $row['id'] . '" value="' . $row['id'] . '" ' . (in_array($row['id'], $checked) ? 'checked' : '') . '>';
+                  echo '<label style="cursor: pointer;" for="kriteria' . $row['id'] . '">' . $row['kdkriteria'] . '<strong>&nbsp; |&nbsp;&nbsp;</strong>' . $row['kriteria'] . '</label>';
                   echo '</li>';
                 } ?>
               </ul>
 
               <strong>
-                <div class="daftarpenyakit">
+                <div class="daftarstrategi">
                   <?php
-                  $sqlp = "SELECT * FROM tb_penyakit WHERE id='$kd_penyakit' ";
+                  $sqlp = "SELECT * FROM tb_strategi WHERE id='$kd_strategi' ";
                   $qryp = mysqli_query($koneksi, $sqlp) or die("SQL Error: " . mysqli_error($koneksi));
                   while ($datap = mysqli_fetch_array($qryp)) {
-                    echo "Penyakit = $datap[kdpenyakit]&nbsp;|&nbsp;$datap[nama_penyakit]";
+                    echo "Strategi = $datap[kdstrategi]&nbsp;|&nbsp;$datap[nama_strategi]";
                   }
-                  ?><input type="hidden" name="daftarpenyakit" value="<?php echo $_GET['kdpenyakit']; ?>" /></div>
+                  ?><input type="hidden" name="daftarstrategi" value="<?php echo $_GET['kdstrategi']; ?>" /></div>
               </strong>
             </td>
           </tr>

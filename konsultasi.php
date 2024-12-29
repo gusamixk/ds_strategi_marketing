@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dempster Shafer</title>
+  <title>Konsultasi</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -48,14 +48,14 @@
       <div class="card-body">
         <div class="bg-info rounded-1">
           <h3 class="mt-4 ms-2 p-1">Petunjuk Pengisian</h3>
-          <p class="ms-3 me-2 pb-2">Proses konsultasi terdiri dari 40 strategi yang dapat diambil.
-             Selanjutnya, anda diminta untuk melilih dengan cara klik opsi Strategi apabila strategi
-              tersebut ingin anda ambil. Pastikan memilih strategi yang benar-benar sesuai dengan bisnis anda</p>
+          <p class="ms-3 me-2 pb-2">Proses konsultasi terdiri dari 40 kriteria yang dapat diambil.
+             Selanjutnya, anda diminta untuk melilih dengan cara klik opsi kriteria apabila kriteria
+              tersebut ingin anda ambil. Pastikan memilih kriteria yang benar-benar sesuai dengan kondisi anda</p>
         </div>
 
-        <h5 class="text-secondary text-center mt-4">Pilih Strategi</h5>
+        <h5 class="text-secondary text-center mt-4">Pilih Kriteria</h5>
         <?php
-        $koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
+        $koneksi = mysqli_connect("localhost", "root", "", "db_strategimarketing_ds");
 
         // Check connection
         if (mysqli_connect_errno()) {
@@ -64,14 +64,14 @@
         ?>
         <form action="./hasilkonsultasi.php" method="POST">
           <?php
-          $sqli = "SELECT * FROM tb_gejala";
+          $sqli = "SELECT * FROM tb_kriteria";
           // $result = mysqli_query($koneksi, $sqli);
           $result = $koneksi->query($sqli);
           if (isset($_POST['bukti'])) {
             if (count($_POST['bukti']) < 2) {
-              echo "<p class=\"gejala\">Mohon maaf anda harus pilih minimal 2 gejala</p>";
+              echo "<p class=\"kriteria\">Mohon maaf anda harus pilih minimal 2 kriteria</p>";
             } elseif (count($_POST['bukti']) <= 0) {
-              echo "<p class=\"gejala\">Anda harus memilih gejala terlebih dahulu</p>";
+              echo "<p class=\"kriteria\">Anda harus memilih kriteria terlebih dahulu</p>";
             }
           }
 
@@ -83,7 +83,7 @@
             if (isset($_POST['bukti'])) {
               echo (in_array($row->id, $_POST['bukti']) ? " checked" : "");
             }
-            echo ">&ensp; " . $row->id . ". " . $row->gejala . "</label><br>";
+            echo ">&ensp; " . $row->id . ". " . $row->kriteria . "</label><br>";
           }
           ?>
           <div class="mt-4">

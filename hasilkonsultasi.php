@@ -37,13 +37,13 @@ session_start();
   <link href="./assets/css/konsultasi.css" rel="stylesheet">
 </head>
 
-<body>
+<body> 
   <div class="container bg-info bg-gradient rounded-2" style="--bs-bg-opacity: .3;">
     <h1 
     class="text-center mt-5 border border-2 border-dark border-start-0 border-end-0 border-top-0"
     >Hasil</h1>
     <?php
-    $koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
+    $koneksi = mysqli_connect("localhost", "root", "", "db_strategimarketing_ds");
 
     // cek koneksi
     if (mysqli_connect_errno()) {
@@ -54,27 +54,27 @@ session_start();
     //Mengambil Nilai Belief Gejala Yang dipilih
     if (isset($_POST['bukti'])) { {
         echo "<div class='form'><p><b class='text-primary'>Strategi Yang dipilih :</b></p>";
-        $gejaladipilih = $_POST['bukti'];
-        foreach ($gejaladipilih as $gjlplh) {
-          echo $gjlplh . " | ";
-          $qry = mysqli_query($koneksi, "SELECT * FROM tb_gejala WHERE id='$gjlplh' ");
+        $kriteriadipilih = $_POST['bukti'];
+        foreach ($kriteriadipilih as $krtplh) {
+          echo $krtplh . " | ";
+          $qry = mysqli_query($koneksi, "SELECT * FROM tb_kriteria WHERE id='$krtplh' ");
           while ($data = mysqli_fetch_array($qry)) {
-            echo $data['gejala'] . "<br>";
+            echo $data['kriteria'] . "<br>";
           }
         }
         echo "</div>";
-        $sql = "SELECT GROUP_CONCAT(b.kdpenyakit), a.belief
+        $sql = "SELECT GROUP_CONCAT(b.kdstrategi), a.belief
                 FROM tb_rules a
-                JOIN tb_penyakit b ON a.id_penyakit=b.id
-                WHERE a.id_gejala IN(" . implode(',', $_POST['bukti']) . ") 
-                GROUP BY a.id_gejala";
+                JOIN tb_strategi b ON a.id_strategi=b.id
+                WHERE a.id_kriteria IN(" . implode(',', $_POST['bukti']) . ") 
+                GROUP BY a.id_kriteria";
         $result = $koneksi->query($sql);
         $bukti = array();
         while ($row = $result->fetch_row()) {
           $bukti[] = $row;
         }
 
-        $sql = "SELECT GROUP_CONCAT(kdpenyakit) FROM tb_penyakit";
+        $sql = "SELECT GROUP_CONCAT(kdstrategi) FROM tb_strategi";
         $result = $koneksi->query($sql);
         $row = $result->fetch_row();
         $fod = $row[0];
@@ -139,9 +139,9 @@ session_start();
 
     <?php
         $arrPenyakit = array();
-        $qry = mysqli_query($koneksi, "SELECT * FROM tb_penyakit");
+        $qry = mysqli_query($koneksi, "SELECT * FROM tb_strategi");
         while ($data = mysqli_fetch_array($qry)) {
-          $arrPenyakit["$data[kdpenyakit]"] = $data['nama_penyakit'];
+          $arrPenyakit["$data[kdstrategi]"] = $data['nama_strategi'];
         }
         $datasolusi = array();
         $datasolusi = array_intersect_key($arrPenyakit, $densitas_baru);
@@ -149,13 +149,13 @@ session_start();
           foreach ($densitas_baru as $kdpenyakit => $ranking) {
               if ($k == $kdpenyakit) {
                   // Mengambil solusi penyakit
-                  $strS = mysqli_query($koneksi, "SELECT * FROM tb_penyakit WHERE kdpenyakit='$k'");
+                  $strS = mysqli_query($koneksi, "SELECT * FROM tb_strategi WHERE kdstrategi='$k'");
       
                   if ($dataS = mysqli_fetch_array($strS)) {
                       // Menampilkan solusi jika data ditemukan
                   } else {
                       // Pesan error jika data tidak ditemukan
-                      echo "<p style='margin: 10px; color: red;'>Solusi tidak ditemukan untuk kode penyakit: $k</p>";
+                      echo "<p style='margin: 10px; color: red;'>Solusi tidak ditemukan untuk kode strategi: $k</p>";
                   }
               }
           }
@@ -166,9 +166,9 @@ session_start();
         echo "<p style = 'text-align:center;'>";
         $codes = array_keys($densitas_baru);
         $final_codes = explode(',', $codes[0]);
-        $sql = "SELECT GROUP_CONCAT(nama_penyakit)  
-        FROM tb_penyakit  
-        WHERE kdpenyakit IN('" . implode("','", $final_codes) . "')";
+        $sql = "SELECT GROUP_CONCAT(nama_strategi)  
+        FROM tb_strategi
+        WHERE kdstrategi IN('" . implode("','", $final_codes) . "')";
         $result = $koneksi->query($sql);
         $row = $result->fetch_row();
 

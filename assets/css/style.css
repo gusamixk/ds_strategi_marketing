@@ -266,15 +266,17 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #00d988;
+  color: #1b035e;
   font-family: "Poppins", sans-serif;
 }
+
 
 .card-title span {
   color: #899bbd;
   font-size: 14px;
   font-weight: 400;
 }
+
 
 .card-body {
   padding: 0 20px 20px 20px;
@@ -856,7 +858,7 @@ h6 {
 }
 
 .dashboard .revenue-card .card-icon {
-  color: #2eca6a;
+  color: #201394;
   background: #e0f8e9;
 }
 
@@ -1131,7 +1133,7 @@ h6 {
 .contact .php-email-form .sent-message {
   display: none;
   color: #fff;
-  background: #18d26e;
+  background: #04258f;
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
@@ -1153,7 +1155,7 @@ h6 {
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
+  border: 3px solid #1c4fda;
   border-top-color: #eee;
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;

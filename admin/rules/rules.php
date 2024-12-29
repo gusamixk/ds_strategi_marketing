@@ -107,7 +107,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="../index.php" class="logo d-flex align-items-center">
         <img src="../../assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Sistem Pakar</span>
+        <span class="d-none d-lg-block">DigiExpert</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -131,13 +131,13 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../penyakit/penyakit.php">
+            <a href="../strategi/strategi.php">
               <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
-            <a href="../gejala/gejala.php">
-              <span>Data Strategi</span>
+            <a href="../kriteria/kriteria.php">
+              <span>Data Kriteria</span>
             </a>
           </li>
         </ul>
@@ -156,7 +156,7 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../laporan/lapgejala.php">
+            <a href="../laporan/lapkriteria.php">
               <span>Laporan Strategi</span>
             </a>
           </li>
@@ -194,7 +194,7 @@
                 <h5 class="text-center">Tambah Rule Data Strategi Digital Marketing</h5>
                 <table class="tab" width="700" border="0" align="center" cellpadding="4" cellspacing="1" bordercolor="#F0F0F0" bgcolor="#fff">
                   <tr bgcolor="#FFFFFF">
-                    <td><strong class="ms-2">Pilih Gejala</strong></td>
+                    <td><strong class="ms-2">Pilih Kriteria</strong></td>
                     <!-- <td>&nbsp;</td> -->
                   </tr>
                   <tr bgcolor="#FFFFFF">
@@ -202,38 +202,38 @@
                       <ul style="list-style:none;">
                         <?php
                         include "../koneksi.php";
-                        $arrPenyakit = array();
-                        $arrGejala = array();
-                        $query = mysqli_query($koneksi, "SELECT * FROM tb_gejala ORDER BY id") or die("Query Error..!" . mysqli_error($koneksi));
+                        $arrStrategi = array();
+                        $arrKriteria = array();
+                        $query = mysqli_query($koneksi, "SELECT * FROM tb_kriteria ORDER BY id") or die("Query Error..!" . mysqli_error($koneksi));
                         while ($row = mysqli_fetch_array($query)) {
-                          $arrGejala["$row[id]"] = $row['kdgejala'] . "," . $row['gejala'];
+                          $arrKriteria["$row[id]"] = $row['kdkriteria'] . "," . $row['kriteria'];
                         ?>
                           <!-- element label dengan attribute for sama dengan id element checkbox -->
                           <li style="margin: 5px 0;">
-                            <label for="gejala<?php echo $row['id']; ?>" style="cursor: pointer;">
+                            <label for="kriteria<?php echo $row['id']; ?>" style="cursor: pointer;">
                               <!-- element checkbox dengan attribute id sama dengan for element label -->
-                              <input class="cekbok" type="checkbox" id="gejala<?php echo $row['id']; ?>" name="gejala[]" value="<?php echo $row['id']; ?>">
-                              &ensp; <?php echo $row['kdgejala'] . "<strong>&nbsp;|&nbsp;</strong>" . $row['gejala']; ?>
+                              <input class="cekbok" type="checkbox" id="kriteria<?php echo $row['id']; ?>" name="kriteria[]" value="<?php echo $row['id']; ?>">
+                              &ensp; <?php echo $row['kdkriteria'] . "<strong>&nbsp;|&nbsp;</strong>" . $row['kriteria']; ?>
                               <span class="check"></span>
                             </label>
                           </li>
                         <?php } ?>
                       </ul>
-                      <strong>&nbsp;&nbsp;Pilih Penyakit
-                        <select name="daftarpenyakit" id="daftarpenyakit">
-                          <option value="NULL">Daftar Penyakit</option>
+                      <strong>&nbsp;&nbsp;Pilih Strategi
+                        <select name="daftarstrategi" id="daftarstrategi">
+                          <option value="NULL">Daftar Strategi</option>
                           <?php
-                          $sqlp = "SELECT * FROM tb_penyakit ORDER BY id";
+                          $sqlp = "SELECT * FROM tb_strategi ORDER BY id";
                           $qryp = mysqli_query($koneksi, $sqlp)
                             or die("SQL Error: " . mysqli_error($koneksi));
                           while ($datap = mysqli_fetch_array($qryp)) {
-                            if ($datap['id'] == $kdsakit) {
+                            if ($datap['id'] == $kdmarket) {
                               $cek = "selected";
                             } else {
                               $cek = "";
                             }
-                            $arrPenyakit["$datap[id]"] = $datap['nama_penyakit'];
-                            echo "<option value='$datap[id]' $cek>$datap[id]&nbsp;|&nbsp;$datap[nama_penyakit]</option>";
+                            $arrStrategi["$datap[id]"] = $datap['nama_strategi'];
+                            echo "<option value='$datap[id]' $cek>$datap[id]&nbsp;|&nbsp;$datap[nama_strategi]</option>";
                           }
                           ?>
                         </select><br><br>&nbsp;&nbsp;Nilai Belief
@@ -257,42 +257,42 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th class="text-center">Kode Gejala | Nama Gejala</th>
+                  <th class="text-center">Kode Kriteria | Nama Kriteria</th>
                   <?php
                   include "../koneksi.php";
-                  $query_p = mysqli_query($koneksi, "SELECT id_penyakit FROM tb_rules GROUP BY id_penyakit");
+                  $query_p = mysqli_query($koneksi, "SELECT id_strategi FROM tb_rules GROUP BY id_strategi");
                   while ($data_p = mysqli_fetch_array($query_p)) {
                   ?>
                     <th class="text-center">
-                      <?php $idp = $data_p['id_penyakit'];
+                      <?php $idp = $data_p['id_strategi'];
                       echo "$idp | ";
-                      print_r($arrPenyakit["$idp"]); ?><br><a href="./editrules.php?kdpenyakit=<?php echo $data_p['id_penyakit']; ?>">Edit Rule</a></th><?php } ?>
+                      print_r($arrStrategi["$idp"]); ?><br><a href="./editrules.php?kdstrategi=<?php echo $data_p['id_strategi']; ?>">Edit Rule</a></th><?php } ?>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM tb_rules GROUP BY id_gejala ORDER BY id_gejala ASC ") or die(mysqli_error($koneksi));
+                $query = mysqli_query($koneksi, "SELECT * FROM tb_rules GROUP BY id_kriteria ORDER BY id_kriteria ASC ") or die(mysqli_error($koneksi));
                 $no = 0;
                 while ($row = mysqli_fetch_array($query)) {
-                  $idpenyakit = $row['id_penyakit'];
+                  $idstrategi = $row['id_strategi'];
                   $no++;
                 ?>
                   <tr>
-                    <td valign="top" class="text-center"><?php echo $row['id_gejala']; ?></td>
+                    <td valign="top" class="text-center"><?php echo $row['id_kriteria']; ?></td>
                     <td>
-                      <?php $idG = $row['id_gejala'];
-                      print_r($arrGejala["$idG"]);
+                      <?php $idG = $row['id_kriteria'];
+                      print_r($arrKriteria["$idG"]);
                       ?></td>
-                    <?php $query_pb = mysqli_query($koneksi, "SELECT id_penyakit FROM tb_rules GROUP BY id_penyakit ");
+                    <?php $query_pb = mysqli_query($koneksi, "SELECT id_strategi FROM tb_rules GROUP BY id_strategi ");
                     while ($data_pb = mysqli_fetch_array($query_pb)) {
                     ?>
                       <td>
                         <?php
-                        $kdpenyakit_B = $data_pb['id_penyakit'];
-                        $kdgejala_B = $row['id_gejala'];
-                        $query_CG = mysqli_query($koneksi, "SELECT * FROM tb_rules WHERE id_penyakit='$kdpenyakit_B' AND id_gejala='$kdgejala_B' ");
+                        $kdstrategi_B = $data_pb['id_strategi'];
+                        $kdkriteria_B = $row['id_kriteria'];
+                        $query_CG = mysqli_query($koneksi, "SELECT * FROM tb_rules WHERE id_strategi='$kdstrategi_B' AND id_kriteria='$kdkriteria_B' ");
                         while ($data_GB = mysqli_fetch_array($query_CG)) {
-                          echo "<center><strong><a title='Edit Nilai Belief' href='./editbelief.php?id_penyakit=$kdpenyakit_B&id_gejala=$kdgejala_B&belief=$data_GB[belief]'>$data_GB[belief]</a></strong></center>";
+                          echo "<center><strong><a title='Edit Nilai Belief' href='./editbelief.php?id_strategi=$kdstrategi_B&id_kriteria=$kdkriteria_B&belief=$data_GB[belief]'>$data_GB[belief]</a></strong></center>";
                         }
                         ?></td><?php } ?>
                   </tr>
@@ -328,7 +328,7 @@
   <script>
     function validateForm() {
       // Ambil semua checkbox yang memiliki nama "gejala[]"
-      var checkboxes = document.getElementsByName("gejala[]");
+      var checkboxes = document.getElementsByName("kriteria[]");
       // Inisialisasi counter untuk menghitung jumlah checkbox yang tercentang
       var count = 0;
       // Iterasi setiap checkbox
@@ -338,7 +338,7 @@
       }
       // Jika tidak ada checkbox yang tercentang, tampilkan pesan error
       if (count == 0) {
-        alert("Anda harus memilih minimal 1 gejala!");
+        alert("Anda harus memilih minimal 1 kriteria!");
         return false;
       }
       // Jika validasi berhasil, submit form

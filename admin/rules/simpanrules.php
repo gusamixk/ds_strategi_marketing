@@ -54,14 +54,14 @@
   <div>
     <?php
     include "../koneksi.php";
-    if (isset($_POST['gejala'])) {
-      $seleksi   = htmlentities(implode(',', $_POST['gejala']));
+    if (isset($_POST['kriteria'])) {
+      $seleksi   = htmlentities(implode(',', $_POST['kriteria']));
     }
     $data = $seleksi;
     $input = $data;
 
     //menampilkan outputnya
-    $kd_penyakit = $_POST['daftarpenyakit'];
+    $kd_strategi = $_POST['daftarstrategi'];
     $belief = $_POST['belief'];
     //menyimpan data kedalam tabel relasi
     $barisinputan = $data;
@@ -71,7 +71,7 @@
     for ($mulai = 0; $mulai < count($barisinputan); $mulai++) {
       $inputan = $barisinputan[$mulai];
 
-      $sql = "INSERT INTO  tb_rules (id_penyakit,id_gejala,belief) VALUES ('$kd_penyakit','$inputan','$belief' )";
+      $sql = "INSERT INTO  tb_rules (id_strategi,id_kriteria,belief) VALUES ('$kd_strategi','$inputan','$belief' )";
       $query = mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
       $no++;
     }

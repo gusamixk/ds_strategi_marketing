@@ -19,7 +19,6 @@
 
   <!-- Vendor CSS Files -->
   <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
@@ -41,7 +40,7 @@
     }
 
     .tambah {
-      background-color: #00d988;
+      background-color:rgb(27, 3, 112);
       border: none;
       color: white;
       padding: 10px 20px;
@@ -56,6 +55,7 @@
       border-radius: 3px;
     }
   </style>
+
 </head>
 
 <body>
@@ -65,8 +65,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="../assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Sistem Pakar</span>
+        <img src="../../assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">DigiExpert</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -90,13 +90,13 @@
         </a>
         <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../penyakit/penyakit.php">
+            <a href="../strategi/strategi.php" class="active">
               <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
-            <a href="../gejala/gejala.php" class="active">
-              <span>Data Strategi</span>
+            <a href="../kriteria/kriteria.php">
+              <span>Data Kriteria</span>
             </a>
           </li>
         </ul>
@@ -115,8 +115,8 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../laporan/lapgejala.php">
-              <span>Laporan Strategi</span>
+            <a href="../laporan/lapkriteria.php">
+              <span>Laporan Kriteria</span>
             </a>
           </li>
         </ul>
@@ -133,12 +133,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Strategi</h1>
+      <h1>Data Strategi dan Solusi</h1>
       <nav style="--bs-breadcrumb-divider: '>';">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">Admin</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Admin</a></li>
           <li class="breadcrumb-item">Master Data</li>
-          <li class="breadcrumb-item active">Data Strategi</li>
+          <li class="breadcrumb-item active">Data Strategi dan Solusi</li>
         </ol>
       </nav>
       <hr>
@@ -160,15 +160,16 @@
                   <th>No</th>
                   <th>Kode Strategi</th>
                   <th>Nama Strategi</th>
+                  <th>Definisi</th>
+                  <th>Solusi</th>
                   <th>Edit</th>
                   <th>Delete<input type="hidden" id="texthapus"></th>
-                  <!-- <th>Delete<input type="hidden" id="texthapus"></th> -->
                 </tr>
               </thead>
               <tbody>
                 <?php
                 include "../koneksi.php";
-                $sql = "SELECT * FROM tb_gejala  ORDER BY id";
+                $sql = "SELECT * FROM tb_strategi  ORDER BY kdstrategi";
                 $qry = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
                 $no = 0;
                 while ($data = mysqli_fetch_array($qry)) {
@@ -176,9 +177,11 @@
                 ?>
                   <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $data['kdgejala']; ?></td>
-                    <td><?php echo $data['gejala']; ?></td>
-                    <td><a href="./editgejala.php?id=<?php echo $data['id']; ?>" class="btn btn-warning btn-sm">Edit</a></td>
+                    <td><?php echo $data['kdstrategi']; ?></td>
+                    <td><?php echo $data['nama_strategi']; ?></td>
+                    <td><?php echo $data['definisi']; ?></td>
+                    <td><?php echo $data['solusi']; ?></td>
+                    <td><a href="./editstrategi.php?kdubah=<?php echo $data['id']; ?>" class="btn btn-warning btn-sm">Edit</a></td>
                     <td><a onClick="return HapusData('<?php echo $data['id']; ?>');" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapusmodal">Delete</a>
                     </td>
                   </tr><?php } ?>
@@ -196,17 +199,25 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title mx-auto">Tambah Data Strategi</h5>
+          <h5 class="modal-title mx-auto">Tambah Data Strategi & Solusi</h5>
         </div>
         <div class="modal-body">
-          <form method="post" action="./simpangejala.php">
+          <form method="post" action="./simpanstrategi.php">
             <div class="form-group mb-2">
-              <label for="kdgejala">Kode Strategi :</label>
-              <input type="text" class="form-control" id="kdgejala" name="kdgejala">
+              <label for="kdstrategi">Kode Strategi :</label>
+              <input type="text" class="form-control" id="kdstrategi" name="kdstrategi">
             </div>
             <div class="form-group mb-2">
-              <label for="gejala">Nama Strategi :</label>
-              <input type="text" class="form-control" id="gejala" name="gejala">
+              <label for="nama_strategi">Nama Strategi :</label>
+              <input type="text" class="form-control" id="nama_strategi" name="nama_strategi">
+            </div>
+            <div class="form-group mb-2">
+              <label for="definisi">Definisi Strategi :</label>
+              <textarea class="form-control" rows="3" id="definisi" name="definisi"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="solusi">Solusi Strategi :</label>
+              <textarea class="form-control" rows="3" id="solusi" name="solusi"></textarea>
             </div>
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary mt-4 btn-sm">Simpan</button>
@@ -218,22 +229,6 @@
     </div>
   </div>
   <!-- End Tambah Modal-->
-
-  <!-- hapus Modal -->
-  <div class="modal fade" id="hapusmodal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Apakah Anda ingin menghapus data ?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-footer">
-          <a onClick="return DropData();" class="btn btn-primary btn-sm"><i class="bi bi-check-lg"></i> Ya</a>
-          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="bi bi-x"></i> Tidak</button>
-        </div>
-      </div>
-    </div>
-  </div><!-- End hapus Modal-->
 
   <!-- Logout Modal -->
   <div class="modal fade" id="logoutmodal" tabindex="-1">
@@ -251,6 +246,22 @@
     </div>
   </div><!-- End Logout Modal-->
 
+  <!-- hapus Modal -->
+  <div class="modal fade" id="hapusmodal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Apakah Anda ingin menghapus data ?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <a onClick="return DropData();" class="btn btn-primary btn-sm"><i class="bi bi-check-lg"></i> Ya</a>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="bi bi-x"></i> Tidak</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- End hapus Modal-->
+
   <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
 
   <!-- Vendor JS Files -->
@@ -267,6 +278,7 @@
 
   <!-- Template Main JS File -->
   <script src="../../assets/js/main.js"></script>
+
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
   <script type="text/javascript">
@@ -283,7 +295,7 @@
 
     function DropData() {
       var data_hapus = $("#texthapus").val();
-      var aksi = "gejala";
+      var aksi = "strategi";
       var datanya = "&data_hapus=" + data_hapus + "&aksi=" + aksi; //hapus data
       $.ajax({
         url: "./hapus.php",
@@ -357,6 +369,7 @@
       // });
     });
   </script>
+
 
 </body>
 

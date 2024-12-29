@@ -25,17 +25,82 @@ include "./koneksi.php";
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link href="../assets/css/style.css" rel="stylesheet">
   <style>
-    .login {
-      background-color: #00d988;
-      border: none;
-      color: white;
-      padding: 7px 15px;
-      border-radius: 3px;
-    }
+    <style>
+  /* Latar belakang gradien */
+  body {
+    background: linear-gradient(135deg, #00d988, #0056b3);
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .login:hover {
-      background-color: #717ff5;
-    }
+  /* Style untuk tombol login */
+  .login {
+    background-color: rgb(0, 33, 217);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Efek hover pada tombol login */
+  .login:hover {
+    background-color: #003b99;
+    transform: translateY(-3px); /* Efek angkat tombol sedikit */
+  }
+
+  /* Style untuk card login */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+
+  /* Gaya teks judul pada card */
+  .card-title {
+    color: rgb(0, 33, 217);
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  /* Gaya teks instruksi login */
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Menambahkan padding pada form */
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 12px;
+  }
+
+  /* Gaya untuk tampilan pesan error */
+  .error-message {
+    font-style: italic;
+    color: #f44336;
+  }
+
+  /* Style untuk footer */
+  .credits {
+    margin-top: 20px;
+    text-align: center;
+    color: #aaa;
+  }
+
+  /* Style untuk link Kembali */
+  .credits a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+  }
+
+  .credits a:hover {
+    text-decoration: underline;
+  }
+</style>
+
   </style>
 </head>
 
@@ -49,12 +114,12 @@ include "./koneksi.php";
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
               <div class="d-flex justify-content-center py-4">
-                <h5 class="d-none d-lg-block">Login Setting Sistem Pakar</h5>
+                <h5 class="d-none d-lg-block">Login dan Atur Data Sekarang</h5>
               </div>
 
               <div class="card mb-3">
                 <div class="card-body">
-                  <h5 class="card-title text-center fs-4">Login Admin</h5>
+                  <h5 class="card-title text-center fs-4 ">Login Admin</h5>
                   <?php
                   if (isset($_GET['pesan'])) {
                     echo '<p class="text-center text-danger" style="font-style: italic;">Maaf, Username / Password Salah</p>';
@@ -81,7 +146,7 @@ include "./koneksi.php";
               </div>
 
               <div class="credits">
-                Sistem Pakar <a href="#">Dempster Shafer</a>
+                Dempster Shafer <a href="#"></a>
               </div>
             </div>
           </div>

@@ -19,6 +19,7 @@
 
   <!-- Vendor CSS Files -->
   <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
@@ -40,7 +41,7 @@
     }
 
     .tambah {
-      background-color: #00d988;
+      background-color:rgb(28, 7, 122);
       border: none;
       color: white;
       padding: 10px 20px;
@@ -55,7 +56,6 @@
       border-radius: 3px;
     }
   </style>
-
 </head>
 
 <body>
@@ -65,8 +65,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="../../assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Sistem Pakar</span>
+        <img src="../assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">DigiExpert</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -90,12 +90,12 @@
         </a>
         <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../penyakit/penyakit.php" class="active">
+            <a href="../strategi/strategi.php">
               <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
-            <a href="../gejala/gejala.php">
+            <a href="../kriteria/kriteria.php" class="active">
               <span>Data Kriteria</span>
             </a>
           </li>
@@ -105,7 +105,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="../rules/rules.php">
           <i class="bi bi-boxes"></i>
-          <span>Rule</span>
+          <span>Rule Dempster Shafer</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
@@ -115,8 +115,8 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../laporan/lapgejala.php">
-              <span>Laporan Kriteria</span>
+            <a href="../laporan/lapkriteria.php">
+              <span>Laporan Strategi</span>
             </a>
           </li>
         </ul>
@@ -133,12 +133,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Strategi dan Solusi</h1>
+      <h1>Data Kriteria</h1>
       <nav style="--bs-breadcrumb-divider: '>';">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Admin</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Admin</a></li>
           <li class="breadcrumb-item">Master Data</li>
-          <li class="breadcrumb-item active">Data Strategi dan Solusi</li>
+          <li class="breadcrumb-item active">Data Kriteria</li>
         </ol>
       </nav>
       <hr>
@@ -158,18 +158,17 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kode Strategi</th>
-                  <th>Nama Strategi</th>
-                  <th>Definisi</th>
-                  <th>Solusi</th>
+                  <th>Kode Kriteria</th>
+                  <th>Nama Kriteria</th>
                   <th>Edit</th>
                   <th>Delete<input type="hidden" id="texthapus"></th>
+                  <!-- <th>Delete<input type="hidden" id="texthapus"></th> -->
                 </tr>
               </thead>
               <tbody>
                 <?php
                 include "../koneksi.php";
-                $sql = "SELECT * FROM tb_penyakit  ORDER BY kdpenyakit";
+                $sql = "SELECT * FROM tb_kriteria  ORDER BY id";
                 $qry = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
                 $no = 0;
                 while ($data = mysqli_fetch_array($qry)) {
@@ -177,11 +176,9 @@
                 ?>
                   <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $data['kdpenyakit']; ?></td>
-                    <td><?php echo $data['nama_penyakit']; ?></td>
-                    <td><?php echo $data['definisi']; ?></td>
-                    <td><?php echo $data['solusi']; ?></td>
-                    <td><a href="./editpenyakit.php?kdubah=<?php echo $data['id']; ?>" class="btn btn-warning btn-sm">Edit</a></td>
+                    <td><?php echo $data['kdkriteria']; ?></td>
+                    <td><?php echo $data['kriteria']; ?></td>
+                    <td><a href="./editkriteria.php?id=<?php echo $data['id']; ?>" class="btn btn-warning btn-sm">Edit</a></td>
                     <td><a onClick="return HapusData('<?php echo $data['id']; ?>');" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapusmodal">Delete</a>
                     </td>
                   </tr><?php } ?>
@@ -199,25 +196,17 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title mx-auto">Tambah Data Strategi & Solusi</h5>
+          <h5 class="modal-title mx-auto">Tambah Data Strategi</h5>
         </div>
         <div class="modal-body">
-          <form method="post" action="./simpanpenyakit.php">
+          <form method="post" action="./simpankriteria.php">
             <div class="form-group mb-2">
-              <label for="kdpenyakit">Kode Strategi :</label>
-              <input type="text" class="form-control" id="kdpenyakit" name="kdpenyakit">
+              <label for="kdkriteria">Kode Strategi :</label>
+              <input type="text" class="form-control" id="kdkriteria" name="kdkriteria">
             </div>
             <div class="form-group mb-2">
-              <label for="nama_penyakit">Nama Strategi :</label>
-              <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit">
-            </div>
-            <div class="form-group mb-2">
-              <label for="definisi">Definisi Strategi :</label>
-              <textarea class="form-control" rows="3" id="definisi" name="definisi"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="solusi">Solusi Strategi :</label>
-              <textarea class="form-control" rows="3" id="solusi" name="solusi"></textarea>
+              <label for="kriteria">Nama Strategi :</label>
+              <input type="text" class="form-control" id="kriteria" name="kriteria">
             </div>
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary mt-4 btn-sm">Simpan</button>
@@ -229,22 +218,6 @@
     </div>
   </div>
   <!-- End Tambah Modal-->
-
-  <!-- Logout Modal -->
-  <div class="modal fade" id="logoutmodal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Apakah Anda yakin ingin keluar ?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-footer">
-          <a href="../login.php" type="button" class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i> Ya</a>
-          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="bi bi-x"></i> Tidak</button>
-        </div>
-      </div>
-    </div>
-  </div><!-- End Logout Modal-->
 
   <!-- hapus Modal -->
   <div class="modal fade" id="hapusmodal" tabindex="-1">
@@ -262,6 +235,22 @@
     </div>
   </div><!-- End hapus Modal-->
 
+  <!-- Logout Modal -->
+  <div class="modal fade" id="logoutmodal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Apakah Anda yakin ingin keluar ?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <a href="../login.php" type="button" class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i> Ya</a>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="bi bi-x"></i> Tidak</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Logout Modal-->
+
   <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
 
   <!-- Vendor JS Files -->
@@ -278,7 +267,6 @@
 
   <!-- Template Main JS File -->
   <script src="../../assets/js/main.js"></script>
-
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
   <script type="text/javascript">
@@ -295,7 +283,7 @@
 
     function DropData() {
       var data_hapus = $("#texthapus").val();
-      var aksi = "penyakit";
+      var aksi = "kriteria";
       var datanya = "&data_hapus=" + data_hapus + "&aksi=" + aksi; //hapus data
       $.ajax({
         url: "./hapus.php",
@@ -369,7 +357,6 @@
       // });
     });
   </script>
-
 
 </body>
 

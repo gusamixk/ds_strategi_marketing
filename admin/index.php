@@ -50,7 +50,7 @@ if ($_SESSION['status'] != "login") {
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="../assets/img/logo.png" alt="logo">
-        <span class="d-none d-lg-block">Dempster Shafer</span>
+        <span class="d-none d-lg-block">DigiExpert</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
@@ -75,13 +75,13 @@ if ($_SESSION['status'] != "login") {
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="./penyakit/penyakit.php">
+            <a href="./strategi/strategi.php">
               <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
-            <a href="./gejala/gejala.php">
-              <span>Data Strategi</span>
+            <a href="./kriteria/kriteria.php">
+              <span>Data kriteria</span>
             </a>
           </li>
         </ul>
@@ -100,7 +100,7 @@ if ($_SESSION['status'] != "login") {
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="./laporan/lapgejala.php">
+            <a href="./laporan/lapkriteria.php">
               <span>Laporan Strategi</span>
             </a>
           </li>

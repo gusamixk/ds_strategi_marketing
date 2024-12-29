@@ -32,7 +32,7 @@
 
   <style>
     .tambah {
-      background-color: #00d988;
+      background-color:rgb(0, 14, 217);
       border: none;
       color: white;
       padding: 10px 20px;
@@ -58,7 +58,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="../index.php" class="logo d-flex align-items-center">
         <img src="../../assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Sistem Pakar</span>
+        <span class="d-none d-lg-block">DigiExpert</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -82,12 +82,12 @@
         </a>
         <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../penyakit/penyakit.php">
+            <a href="../strategi/strategi.php">
               <span>Data Strategi dan Solusi</span>
             </a>
           </li>
           <li>
-            <a href="../gejala/gejala.php">
+            <a href="../kriteria/kriteria.php">
               <span>Data Strategi</span>
             </a>
           </li>
@@ -107,7 +107,7 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../laporan/lapgejala.php" class="active">
+            <a href="../laporan/lapkriteria.php" class="active">
               <span>Laporan Strategi</span>
             </a>
           </li>
@@ -146,11 +146,11 @@
         <ul class="dropdown-menu" role="menu">
           <?php
           include "../koneksi.php";
-          $sqlp = "SELECT * FROM tb_penyakit ORDER BY kdpenyakit";
+          $sqlp = "SELECT * FROM tb_strategi ORDER BY kdstrategi";
           $qryp = mysqli_query($koneksi, $sqlp) or die("SQL Error: " . mysqli_error($koneksi));
           while ($datap = mysqli_fetch_array($qryp)) {
           ?>
-            <li><a class="dropdown-item" href="../laporan/lapgejala.php?data=<?php echo $datap['id']; ?>"><?php echo $datap['kdpenyakit'] . " " . $datap['nama_penyakit']; ?></a></li><?php } ?>
+            <li><a class="dropdown-item" href="../laporan/lapkriteria.php?data=<?php echo $datap['id']; ?>"><?php echo $datap['kdstrategi'] . " " . $datap['nama_strategi']; ?></a></li><?php } ?>
         </ul>
       </div> <br> <br>
 
@@ -159,22 +159,25 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Kode Strategi</th>
-              <th>Nama Strategi</th>
+              <th>Kode Kriteria</th>
+              <th>Nama Kriteria</th>
             </tr>
           </thead>
           <tbody>
             <?php
               if (isset($_GET['data'])) {
-                $kdsakit = $_GET['data'];
-                $sql = "SELECT DISTINCT tb_gejala.id, tb_gejala.kdgejala, tb_gejala.gejala
-                FROM tb_rules INNER JOIN tb_gejala ON tb_gejala.id = tb_rules.id_gejala
-                WHERE tb_rules.id_penyakit='$kdsakit' ORDER BY tb.gejala.id ASC";
+                $kdmarket = $_GET['data'];
+                $sql = "SELECT DISTINCT tb_kriteria.id, tb_kriteria.kdkriteria, tb_kriteria.kriteria 
+        FROM tb_rules 
+        INNER JOIN tb_kriteria ON tb_kriteria.id = tb_rules.id_kriteria 
+        WHERE tb_rules.id_strategi='$kdmarket' 
+        ORDER BY tb_kriteria.id ASC";
+
               } else {
-                $sql = "SELECT DISTINCT tb_gejala.id, tb_gejala.kdgejala, tb_gejala.gejala 
+                $sql = "SELECT DISTINCT tb_kriteria.id, tb_kriteria.kdkriteria, tb_kriteria.kriteria 
                         FROM tb_rules 
-                        INNER JOIN tb_gejala ON tb_gejala.id = tb_rules.id_gejala 
-                        ORDER BY tb_gejala.id ASC";
+                        INNER JOIN tb_kriteria ON tb_kriteria.id = tb_rules.id_kriteria 
+                        ORDER BY tb_kriteria.id ASC";
               }
               $qry = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
               $datalist=[];
@@ -186,8 +189,8 @@
                   ?>
                 <tr>
                   <td><?php echo $data['id']; ?></td>
-                  <td><?php echo $data['kdgejala']; ?></td>
-                  <td><?php echo $data['gejala']; ?></td>
+                  <td><?php echo $data['kdkriteria']; ?></td>
+                  <td><?php echo $data['kriteria']; ?></td>
                 </tr>
                 <?php 
               }

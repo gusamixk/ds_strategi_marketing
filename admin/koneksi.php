@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "db_penyakit_ds");
+$koneksi = mysqli_connect("localhost", "root", "", "db_strategimarketing_ds");
 
 // Check connection
 if (mysqli_connect_errno()) {

@@ -80,7 +80,7 @@
               <a class="nav-link active" aria-current="page" href="./index.php"><i class="bi bi-house-fill"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="./daftarpenyakit.php"></i>Daftar Strategi</a>
+              <a class="nav-link " href="./daftarstrategi.php"></i>Daftar Strategi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./konsultasi.php">Konsultasi</a>
