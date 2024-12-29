@@ -196,16 +196,16 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title mx-auto">Tambah Data Strategi</h5>
+          <h5 class="modal-title mx-auto">Tambah Data Kriteria</h5>
         </div>
         <div class="modal-body">
           <form method="post" action="./simpankriteria.php">
             <div class="form-group mb-2">
-              <label for="kdkriteria">Kode Strategi :</label>
+              <label for="kdkriteria">Kode Kriteria :</label>
               <input type="text" class="form-control" id="kdkriteria" name="kdkriteria">
             </div>
             <div class="form-group mb-2">
-              <label for="kriteria">Nama Strategi :</label>
+              <label for="kriteria">Nama Kriteria :</label>
               <input type="text" class="form-control" id="kriteria" name="kriteria">
             </div>
             <div class="d-grid gap-2">

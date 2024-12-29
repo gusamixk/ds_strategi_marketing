@@ -11,6 +11,7 @@ if ($id != "") {
   $id = $data['id'];
   $edit_kdkriteria = $data['kdkriteria'];
   $edit_kriteria = $data['kriteria'];
+
 }
 ?>
 <!DOCTYPE html>
