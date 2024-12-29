@@ -9,8 +9,8 @@ if ($id != "") {
   $data = mysqli_fetch_array($qry);
   #samakan dengan variabel form
   $id = $data['id'];
-  $edit_kdgejala = $data['kdkriteria'];
-  $edit_gejala = $data['kriteria'];
+  $edit_kdkriteria = $data['kdkriteria'];
+  $edit_kriteria= $data['kriteria'];
 }
 ?>
 <!DOCTYPE html>
