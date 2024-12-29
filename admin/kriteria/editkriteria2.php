@@ -15,8 +15,8 @@
   <?php
   include "../koneksi.php";
 
-  $kdgejala = $_POST['kdkriteria'];
-  $gejala = $_POST['edit_kriteria'];
+  $kdkriteria = $_POST['kdkriteria'];
+  $kriteria = $_POST['edit_kriteria'];
   $sql = "UPDATE tb_kriteria SET kriteria='$kriteria' WHERE id='$kdkriteria'";
   $result = mysqli_query($koneksi, $sql) or die("SQL Error" . mysqli_error($koneksi));
 

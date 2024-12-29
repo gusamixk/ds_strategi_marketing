@@ -77,7 +77,10 @@
         $dataP = mysqli_fetch_array($queryP);
         echo "<b>Nama Strategi = " . $dataP['kdstrategi'] . " | " . $dataP['nama_strategi'];
         ?></b>
-        <form id="form1" name="form1" method="post" action="./updatebelief.php?id_strategi=<?php echo $_GET['id_strategi']; ?>&id_kriteria=<?php echo $_GET['id_kriteria']; ?>" enctype="multipart/form-data">
+        <form id="form1" name="form1" method="post" 
+        action="./updatebelief.php?id_strategi=<?php echo $_GET['id_strategi']; ?>
+        &id_kriteria=<?php echo $_GET['id_kriteria']; ?>" 
+        enctype="multipart/form-data">
           <div class="table-responsive">
             <table class="table table-striped table-bordered mt-2">
               <thead>

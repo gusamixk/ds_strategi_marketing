@@ -57,7 +57,7 @@
   $kd_strategi = $_GET['id_strategi'];
   $belief = $_POST['updatebelief'];
   // jika data nol maka simpan data
-  $perintah = "UPDATE tb_rules SET belief='$belief' WHERE id_kriteria='$kd_strategi' AND id_strategi='$kd_strategi' ";
+  $perintah = "UPDATE tb_rules SET belief='$belief' WHERE id_kriteria='$kd_kriteria' AND id_strategi='$kd_strategi' ";
   //$perintah2=mysqli_query("UPDATE tbrule SET md='$NilaiMD' WHERE kd_gejala='$kd_gejala' ");
   $berhasil = mysqli_query($koneksi, $perintah) or die(" Data tidak masuk database / data telah ada " . mysqli_error($koneksi));
   if ($berhasil) {

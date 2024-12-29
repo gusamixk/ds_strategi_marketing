@@ -9,8 +9,8 @@ if ($id != "") {
   $data = mysqli_fetch_array($qry);
   #samakan dengan variabel form
   $id = $data['id'];
-  $edit_kdgejala = $data['kdkriteria'];
-  $edit_gejala = $data['kriteria'];
+  $edit_kdkriteria = $data['kdkriteria'];
+  $edit_kriteria = $data['kriteria'];
 }
 ?>
 <!DOCTYPE html>
@@ -32,11 +32,11 @@ if ($id != "") {
   <div class="card col-md-5 mx-auto mt-5">
     <div class="card-body">
       <h4 class="text-center">Edit Data Kriteria</h4>
-      <form method="post" action="./editkriteria2.php">
+      <form method="post" action="editkriteria2.php">
         <div class="form-group mb-2">
           <label for="kdkriteria">Kode Kriteria :</label>
           <input type="text" class="form-control" id="kdkriteria" name="kdkriteria" value="<?php echo $edit_kdkriteria; ?>">
-          <input name="kdgejala" type="hidden" id="kdgejala" value="<?php echo $id; ?>">
+          <input name="kdkriteria" type="hidden" id="kdkriteria" value="<?php echo $id; ?>">
         </div>
         <div class="form-group mb-2">
           <label for="edit_kriteria">Nama Kriteria :</label>
